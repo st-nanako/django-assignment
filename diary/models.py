@@ -15,4 +15,4 @@ class Diary(models.Model):
     feeling = models.IntegerField(verbose_name="気分", default=0)
      
     def __str__(self): # 管理画面でレコード毎に表示する文字列を指定
-        return self.created_at
+        return f'{self.created_at}'
