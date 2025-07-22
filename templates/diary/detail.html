@@ -1,15 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %}
-- Top -
+- Detail -
 {% endblock %}
 
 {% block contents %}
-<h1>Diary List</h1>
-<h2>日付検索</h2>
-<p>年を選択</p>
-<p>月を選択</p>
-<a href="{% url 'add'%}">日記を追加</a>
 
 {% for diary in diary_list %}
   <p>
@@ -26,8 +21,8 @@
     {% comment %} 天気 {% endcomment %}
     天気：
     {{ diary.weather }}
-    {% comment %} <a href="{% url 'edit' diary.pk %}">編集</a> {% endcomment %}
-    {% comment %} <a href="{% url 'delete' diary.pk %}">削除</a> {% endcomment %}
+    <a href="">編集</a>
+    <a href="">削除</a>
   </p>
 {% endfor %}
 {% endblock %}

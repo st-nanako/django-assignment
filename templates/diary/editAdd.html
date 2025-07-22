@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+- {{ diary.id|yesno:'Edit,Add' }} -
+{% endblock %}
+
+{% block contents %}
+
+<h1>日記{{ diary.id|yesno:'編集,追加' }}</h1>
+<p>
+  {% comment %} 日付 {% endcomment %}
+  <a href="">{{ diary.created_at|date:"Y年m月d日 H:i" }}</a>
+  {% comment %} 気分の画像表示 {% endcomment %}
+  {% if diary.feeling == 0 %}
+    <img src="{% static 'img/Smile.png' %}" alt="">
+  {% elif diary.feeling == 1 %}
+    <img src="{% static 'img/Smile.png' %}" alt="">
+  {% elif diary.feeling == 2 %}
+    <img src="{% static 'img/Smile.png' %}" alt="">
+  {% endif %}
+  {% comment %} 天気 {% endcomment %}
+  天気：
+  {{ diary.weather }}
+  <a href="">編集</a>
+  <a href="">削除</a>
+</p>
+
+{% endblock %}
