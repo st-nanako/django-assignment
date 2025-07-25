@@ -8,21 +8,52 @@
 
 <h1>日記{{ diary.id|yesno:'編集,追加' }}</h1>
 <p>
-  {% comment %} 日付 {% endcomment %}
-  <a href="">{{ diary.created_at|date:"Y年m月d日 H:i" }}</a>
-  {% comment %} 気分の画像表示 {% endcomment %}
-  {% if diary.feeling == 0 %}
-    <img src="{% static 'img/Smile.png' %}" alt="">
-  {% elif diary.feeling == 1 %}
-    <img src="{% static 'img/Smile.png' %}" alt="">
-  {% elif diary.feeling == 2 %}
-    <img src="{% static 'img/Smile.png' %}" alt="">
-  {% endif %}
-  {% comment %} 天気 {% endcomment %}
-  天気：
-  {{ diary.weather }}
-  <a href="">編集</a>
-  <a href="">削除</a>
+  <form action= " {% if diary.id %}{% url 'edit' diary.id %}{% else %}{% url 'add' %}{% endif %} " method="post">
+    {% csrf_token %}
+    {% comment %} 日付 {% endcomment %}
+    <a href="">{{ diary.created_at|date:"Y年m月d日 H:i" }}</a>
+    {% comment %} 体調 {% endcomment %}
+    <div>
+      {{form.condition.label}}
+      {{form.condition}}
+      {% if form.condition.errors %}
+        {% for error in form.condition.errors %}
+          <div class="field-error">{{ error }}</div>
+        {% endfor %}
+      {% endif %}
+    </div>
+    {% comment %} 気分 {% endcomment %}
+    <div>
+      {{form.feeling.label}}
+      {{form.feeling}}
+      {% if form.feeling.errors %}
+        {% for error in form.feeling.errors %}
+          <div class="field-error">{{ error }}</div>
+        {% endfor %}
+      {% endif %}
+    </div>
+    {% comment %} 天気 {% endcomment %}
+    <div>
+      {{form.weather.label}}
+      {{form.weather}}
+      {% if form.weather.errors %}
+        {% for error in form.weather.errors %}
+          <div class="field-error">{{ error }}</div>
+        {% endfor %}
+      {% endif %}
+    </div>
+    {% comment %} 詳細 {% endcomment %}
+    <div>
+      {{form.description.label}}
+      {{form.description}}
+      {% if form.description.errors %}
+        {% for error in form.description.errors %}
+          <div class="field-error">{{ error }}</div>
+        {% endfor %}
+      {% endif %}
+    </div>
+    <button type="submit">{{ task.id|yesno:'更新,登録' }}</button>
+  </form> 
 </p>
 
 {% endblock %}

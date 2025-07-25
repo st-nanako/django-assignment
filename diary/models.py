@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 
@@ -11,8 +12,8 @@ class Diary(models.Model):
     updated_at = models.DateTimeField(verbose_name="更新日",auto_now=True,null=True)
     description = models.TextField(verbose_name="詳細", null=True, blank=True)
     weather = models.CharField(verbose_name="天気", max_length=255)
-    condition = models.IntegerField(verbose_name="体調", default=0)
-    feeling = models.IntegerField(verbose_name="気分", default=0)
+    condition = models.IntegerField(verbose_name="体調", default=0,validators=[MinValueValidator(0), MaxValueValidator(2)])
+    feeling = models.IntegerField(verbose_name="気分", default=0,validators=[MinValueValidator(0), MaxValueValidator(2)])
      
     def __str__(self): # 管理画面でレコード毎に表示する文字列を指定
         return f'{self.created_at}'

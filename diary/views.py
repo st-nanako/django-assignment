@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.views import View # クラスベースビューを継承するのに必要
 from .models import Diary
 from .forms import DiaryForm
+from django.views import generic    # 汎用ビューのインポート
 
 
 # Create your views here.
@@ -18,6 +19,15 @@ class IndexView(View):
 
 # ビュークラスをインスタンス化
 index = IndexView.as_view()
+
+# 詳細
+class DetailView(View):
+    def get(self,request,pk):
+        form = Diary.objects.get(id = pk)
+        #テンプレートのレンダリング処理
+        return render(request,"diary/detail.html",{'form':form})
+
+detail = DetailView.as_view()
 
 # 追加
 class AddView(View):
@@ -41,6 +51,6 @@ class AddView(View):
             return redirect('/')
         
         #データが正常じゃない
-        return render(request,'mytodo/editAdd.html',{'form':form})
+        return render(request,'diary/editAdd.html',{'form':form})
     
 add = AddView.as_view()

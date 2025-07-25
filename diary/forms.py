@@ -16,3 +16,14 @@ class DiaryForm(forms.ModelForm):
         self.fields["weather"].widget.attrs = {'weather':'天気'}
         self.fields["condition"].widget.attrs = {'condition':'体調'}
         self.fields["feeling"].widget.attrs = {'feeling':'気分'}
+        
+     # 全体にバリデーションを追加する場合はcleanメソッドを作成する
+    def clean(self):
+        cleaned_data = super().clean() # 全ての入力データを取得
+        condition = cleaned_data.get('condition')
+        feeling = cleaned_data.get('feeling')
+
+        if(condition <= 0 or condition > 2):
+            self.add_error('condition', '体調は0から2の範囲で入力してください。')
+        elif(feeling <= 0 or feeling > 2):
+            self.add_error('feeling', '気分は0から2の範囲で入力してください。')
