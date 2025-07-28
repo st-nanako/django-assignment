@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.views import View # クラスベースビューを継承するのに必要
 from .models import Diary
-from .forms import DiaryForm
+from .forms import DiaryForm,SearchForm
 from django.views import generic    # 汎用ビューのインポート
 
 
@@ -11,7 +11,8 @@ class IndexView(View):
     def get(self, request): # GETリクエストが送信された時に呼び出される
         # diaryリストを取得
         diary_list = Diary.objects.order_by('created_at')
-        context = {"diary_list":diary_list}
+        form = SearchForm(request.GET or None)
+        context = {"diary_list":diary_list,"form":form}
 
         # テンプレートをレンダリング
         return render(request, "diary/index.html",context)
@@ -94,3 +95,20 @@ class DeleteView(View):
         
     
 delete = DeleteView.as_view()
+
+# 検索
+
+def search(request):
+    form = SearchForm(request.GET or None)
+    diaries = Diary.objects.all()
+
+    if form.is_valid():
+        year = form.cleaned_data.get('year')
+        month = form.cleaned_data.get('month')
+
+        if year:
+            diaries = diaries.filter(created_at__year=int(year))
+        if month:
+            diaries = diaries.filter(created_at__month=int(month))
+
+    return render(request, 'diary/results.html', {'form': form, 'diaries': diaries})
