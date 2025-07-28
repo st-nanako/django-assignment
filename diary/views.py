@@ -54,3 +54,43 @@ class AddView(View):
         return render(request,'diary/editAdd.html',{'form':form})
     
 add = AddView.as_view()
+
+# 編集
+class EditView(View):
+    def get(self,request,pk):
+        diary = Diary.objects.get(id = pk)
+        diaryform = DiaryForm(instance = diary)
+        #テンプレートのレンダリング処理
+        return render(request,"diary/editAdd.html",{'form' : diaryform,'diary':diary})
+    
+    def post(self,request,pk,*args,**kwargs):
+        #編集処理
+        data = Diary.objects.get(id=pk)
+        diaryform = DiaryForm(request.POST, instance = data)
+        is_valid = diaryform.is_valid()
+        
+        #データが正常であれば
+        if is_valid:
+            #モデルに登録
+            diaryform.save()
+            return redirect('/')
+        
+        #データが正常じゃない
+        return render(request,'diary/editAdd.html',{'form':diaryform})
+    
+edit = EditView.as_view()
+
+# 削除
+class DeleteView(View):
+    def get(self,request,pk):
+        form = Diary.objects.get(id = pk)
+        #テンプレートのレンダリング処理
+        return render(request,"diary/delete.html",{'form':form})
+    
+    def post(self,request,pk,*args,**kwargs):
+        #削除処理
+        Diary.objects.filter(id=pk).delete()
+        return redirect('/')
+        
+    
+delete = DeleteView.as_view()

@@ -23,7 +23,7 @@ class DiaryForm(forms.ModelForm):
         condition = cleaned_data.get('condition')
         feeling = cleaned_data.get('feeling')
 
-        if(condition <= 0 or condition > 2):
+        if(condition < 0 or condition > 2):
             self.add_error('condition', '体調は0から2の範囲で入力してください。')
-        elif(feeling <= 0 or feeling > 2):
+        elif(feeling < 0 or feeling > 2):
             self.add_error('feeling', '気分は0から2の範囲で入力してください。')

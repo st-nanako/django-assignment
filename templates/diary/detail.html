@@ -27,8 +27,8 @@
           <td>{{form.description}}</td>
       </tr>
   </table>
-  {% comment %} <a href="{% url 'edit' diary.pk %}">編集</a> {% endcomment %}
-  {% comment %} <a href="{% url 'delete' diary.pk %}">削除</a> {% endcomment %}
+  <a href="{% url 'edit' form.pk %}">編集</a>
+  <a href="{% url 'delete' form.pk %}">削除</a>
 
   <a href="{% url 'index' %}">一覧へ戻る</a>
 </div>

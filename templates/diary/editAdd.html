@@ -11,7 +11,7 @@
   <form action= " {% if diary.id %}{% url 'edit' diary.id %}{% else %}{% url 'add' %}{% endif %} " method="post">
     {% csrf_token %}
     {% comment %} 日付 {% endcomment %}
-    <a href="">{{ diary.created_at|date:"Y年m月d日 H:i" }}</a>
+    {{ diary.created_at|date:"Y年m月d日 H:i" }}
     {% comment %} 体調 {% endcomment %}
     <div>
       {{form.condition.label}}
@@ -52,7 +52,8 @@
         {% endfor %}
       {% endif %}
     </div>
-    <button type="submit">{{ task.id|yesno:'更新,登録' }}</button>
+    <button type="submit">{{ diary.id|yesno:'更新,登録' }}</button>
+    <a href="{% if diary.id %}{% url 'detail' diary.id %}{% else %}{% url 'index' %}{% endif %}">戻る</a>
   </form> 
 </p>
 
