@@ -20,4 +20,5 @@ from django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("diary.urls")), # diary/urls.pyを参照
+    path('accounts/', include('django.contrib.auth.urls')),# ユーザー認証用のビューを呼び出す
 ]
