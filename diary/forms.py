@@ -3,7 +3,7 @@ from django.utils import timezone
 from django.core.exceptions import ValidationError
 from .models import Diary
 
-#Taskモデル用の入力フォーム
+#Diaryモデル用の入力フォーム
 class DiaryForm(forms.ModelForm):
     class Meta:
         model = Diary
