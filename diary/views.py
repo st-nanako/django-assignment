@@ -3,14 +3,15 @@ from django.views import View # クラスベースビューを継承するのに
 from .models import Diary
 from .forms import DiaryForm,SearchForm
 from django.views import generic    # 汎用ビューのインポート
+from django.contrib.auth.mixins import LoginRequiredMixin   # LoginRequiredMixinをインポート
 
 
 # Create your views here.
 
-class IndexView(View):
+class IndexView(LoginRequiredMixin,View):
     def get(self, request): # GETリクエストが送信された時に呼び出される
         # diaryリストを取得
-        diary_list = Diary.objects.order_by('created_at')
+        diary_list = Diary.objects.filter(author=self.request.user).order_by('created_at')
         form = SearchForm(request.GET or None)
         context = {"diary_list":diary_list,"form":form}
 
@@ -31,7 +32,7 @@ class DetailView(View):
 detail = DetailView.as_view()
 
 # 追加
-class AddView(View):
+class AddView(LoginRequiredMixin,View):
     def get(self,request):
         #空のフォームを作ってテンプレートに返す
         form = DiaryForm()
@@ -57,7 +58,7 @@ class AddView(View):
 add = AddView.as_view()
 
 # 編集
-class EditView(View):
+class EditView(LoginRequiredMixin,View):
     def get(self,request,pk):
         diary = Diary.objects.get(id = pk)
         diaryform = DiaryForm(instance = diary)
@@ -82,7 +83,7 @@ class EditView(View):
 edit = EditView.as_view()
 
 # 削除
-class DeleteView(View):
+class DeleteView(LoginRequiredMixin,View):
     def get(self,request,pk):
         form = Diary.objects.get(id = pk)
         #テンプレートのレンダリング処理

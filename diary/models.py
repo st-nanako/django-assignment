@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.contrib.auth.models import User # Userモデルをインポート
 
 # Create your models here.
 
@@ -8,6 +9,7 @@ class Diary(models.Model):
         db_table = 'diaries' # 使用するテーブル名を指定（省略すると自動で app_model 名になる）
     
     # verbose_name：人間にとってわかりやすい名前（ラベル）」を指定するためのオプション ※ カラム名は変更されずtitleのまま
+    author = models.ForeignKey(User, on_delete=models.PROTECT)
     created_at = models.DateTimeField(verbose_name="作成日",auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name="更新日",auto_now=True,null=True)
     description = models.TextField(verbose_name="詳細", null=True, blank=True)
