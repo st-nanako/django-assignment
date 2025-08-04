@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block contents %}
-<h1>Diary List</h1>
+<h1>日記一覧</h1>
 <form method="get" action="{% url 'search' %}">
   <h2>日付検索</h2>
   {{ form.year.label_tag }} {{ form.year }}

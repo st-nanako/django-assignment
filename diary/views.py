@@ -49,6 +49,7 @@ class AddView(LoginRequiredMixin,View):
         #データが正常であれば
         if is_valid:
             #モデルに登録
+            form.instance.author = request.user
             form.save()
             return redirect('/')
         

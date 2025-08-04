@@ -58,6 +58,7 @@ class SearchForm(forms.Form):
     month = forms.ChoiceField(
         label='月', 
         choices = (
+            ('', ''),
             ('1', '１月'),
             ('2', '２月'),
             ('3', '３月'),
