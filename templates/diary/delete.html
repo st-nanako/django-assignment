@@ -12,19 +12,19 @@
     {% csrf_token %}
     <table>
         <tr>
-            <th>{{form.weather.label}}</th>
+            <th>天気：</th>
             <td>{{form.weather}}</td>
         </tr>
         <tr>
-            <th>{{form.condition.label}}</th>
-            <td>{{ form.condition }}</td>
+            <th>体調：</th>
+            <td>{{ form.condition}}</td>
         </tr>
         <tr>
-            <th>{{form.feeling.label}}</th>
+            <th>気分：</th>
             <td>{{ form.feeling }}</td>
         </tr>
         <tr>
-            <th> {{form.description.label}}</th>
+            <th> 詳細：</th>
             <td>{{form.description}}</td>
         </tr>
     </table>

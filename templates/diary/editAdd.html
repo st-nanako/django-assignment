@@ -14,7 +14,7 @@
     {{ diary.created_at|date:"Y年m月d日 H:i" }}
     {% comment %} 体調 {% endcomment %}
     <div>
-      {{form.condition.label}}
+      体調
       {{form.condition}}
       {% if form.condition.errors %}
         {% for error in form.condition.errors %}
@@ -24,7 +24,7 @@
     </div>
     {% comment %} 気分 {% endcomment %}
     <div>
-      {{form.feeling.label}}
+      気分
       {{form.feeling}}
       {% if form.feeling.errors %}
         {% for error in form.feeling.errors %}
