@@ -3,7 +3,7 @@
 
 {% block contents %}
 {% comment %} ユーザーを認証している場合はログイン後のページを表示 {% endcomment %}
-<h1>Djangoで作るログイン機能</h1>
+<h1>ログイン</h1>
 {% if user.is_authenticated %}
     <p>{{ user }} でログインしています</p>
     <a href="{% url 'logout' %}">

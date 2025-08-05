@@ -29,4 +29,4 @@ class Diary(models.Model):
     feeling = models.CharField(max_length=10, choices=MOOD_CHOICES)
      
     def __str__(self): # 管理画面でレコード毎に表示する文字列を指定
-        return f'{self.created_at}'
+        return f'{self.created_at.strftime('%Y-%m-%d %H:%M')}'
