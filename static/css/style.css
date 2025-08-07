@@ -1,0 +1,30 @@
+@charset "utf-8";
+
+/* 日記を横並び */
+.diary-list{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+/* トップ画面の日記表示の枠組み */
+.diary-item{
+    border: 1px solid black;
+    padding: 1em;
+    border-radius: 5px;
+}
+/* 日記の中のaタグ調整 */
+.diary-item a{
+    display: block;
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+}
+.diary-item a:hover{
+    color: 	#4682B4;
+}
+/* hrの色調整 */
+hr {
+/* !important（このcssを最優先で適用する） */
+  opacity: 1 !important; /* 透過なしにする */
+  background-color: black; /* 好きな色を指定 */
+}

@@ -12,6 +12,11 @@
     {% csrf_token %}
     <table>
         <tr>
+          <th>作成日時：</th>
+          <td>{{ form.created_at|date:"Y年m月d日 H:i" }}</td>
+      </tr>
+        </tr>
+        <tr>
             <th>天気：</th>
             <td>{{form.weather}}</td>
         </tr>
