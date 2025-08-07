@@ -10,7 +10,9 @@
 .diary-item{
     border: 1px solid black;
     padding: 1em;
+    padding-top: 0;
     border-radius: 5px;
+    margin-top: 2em;
 }
 /* 日記の中のaタグ調整 */
 .diary-item a{
@@ -27,4 +29,77 @@ hr {
 /* !important（このcssを最優先で適用する） */
   opacity: 1 !important; /* 透過なしにする */
   background-color: black; /* 好きな色を指定 */
+}
+
+/* 日記を追加のpタグの文字大きさ調整 */
+.add_p{
+    font-size: 20px;
+    text-align: center;
+}
+/* 日記を追加のボックス調整 */
+.add{
+    width: 273px;
+}
+
+/* 日記を追加のボックスの中のaタグ調整 */
+.add a{
+    height: 140px;
+}
+
+/* 日記を追加のボックスの中のbtn調整 */
+
+.add_btn{
+    border: 1px solid black;
+    border-radius: 5px;
+    
+}
+
+.add_btn a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add_btn:hover{
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+/* add_btnの中の画鋲の画像調整 */
+.img_pin{
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+.img_pin img{
+    width: auto;
+    height: 100%;
+}
+
+/* 気分、体調横並びと間隔調整 */
+.feeling_condition_items {
+    display: flex;
+    justify-content: center;
+    gap: 30%;
+}
+
+/* 日記情報位置調整 */
+.diary_information{
+    text-align: center;
+}
+/* pタグ調整 */
+.bottom_none{
+    margin-bottom: 0px;
+}
+
+/* 気分体調画像調整 */
+.img{
+    width: 50px;
+    height: 50px;
+
+}
+.img img {
+    width: 100%;
+    height: 100%;
 }
