@@ -4,12 +4,16 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>DiaryApp {% block title %}{% endblock %}</title>
     {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% comment %} フォント {% endcomment %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&family=Kaisei+Decol&display=swap" rel="stylesheet">
+
+    <title>DiaryApp {% block title %}{% endblock %}</title>
 </head>
-<body>
-  <body>
+<body clas="hachi-maru-pop-regular">
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">日記帳アプリ</a>

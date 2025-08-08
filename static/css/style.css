@@ -5,14 +5,17 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    padding: 1em;
+    gap: 2em;
 }
 /* トップ画面の日記表示の枠組み */
 .diary-item{
-    border: 1px solid black;
+    border: 1px solid rgba(0, 0, 0, 0.2);
     padding: 1em;
     padding-top: 0;
     border-radius: 5px;
     margin-top: 2em;
+    background-color: #FFFAFA;
 }
 /* 日記の中のaタグ調整 */
 .diary-item a{
@@ -22,13 +25,7 @@
     color: black;
 }
 .diary-item a:hover{
-    color: 	#4682B4;
-}
-/* hrの色調整 */
-hr {
-/* !important（このcssを最優先で適用する） */
-  opacity: 1 !important; /* 透過なしにする */
-  background-color: black; /* 好きな色を指定 */
+    color: 	black;
 }
 
 /* 日記を追加のpタグの文字大きさ調整 */
@@ -48,21 +45,14 @@ hr {
 
 /* 日記を追加のボックスの中のbtn調整 */
 
-.add_btn{
-    border: 1px solid black;
-    border-radius: 5px;
-    
+.add_img{
+    width: 180px;
+    height: 180px;
+    margin: 0 auto;
 }
-
-.add_btn a{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.add_btn:hover{
-    transform: scale(0.95);
-    transition: transform 0.3s ease;
+.add_img img{
+    width: 100%;
+    height: 100%;
 }
 
 /* add_btnの中の画鋲の画像調整 */
@@ -102,4 +92,51 @@ hr {
 .img img {
     width: 100%;
     height: 100%;
+}
+
+/* 日記のアニメーション */
+.diary-item:hover {
+  box-shadow: 0 15px 30px -5px rgba(0,0,0,.15), 0 0 5px rgba(0,0,0,.1);
+  transform: translateY(4px);
+}
+
+/* 背景画像 */
+body{
+    background-image: url(../img/kabe.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+/* タイトルと検索を横並び */
+.title_search{
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 検索欄 */
+.search button{
+    display: block;
+    margin: 1em;
+    margin-left: auto;
+}
+
+.search .side{
+    display: flex;
+}
+
+.search p{
+    margin-right: 1em;
+}
+
+
+/* タイトル */
+.title h1{
+    margin-top: 1.5em;
+}
+
+/* フォント */
+body {
+  font-family: "Kaisei Decol", serif;
+  font-weight: 400;
+  font-style: normal;
 }
