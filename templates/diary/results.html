@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block contents %}
-  <h1 class="">検索結果</h1>
+  <div class ="diary-item result">
+    <div class="img_pin"><img src="{% static "img/gabyou_green.png" %}" alt=""></div>
+    <h1>検索結果</h1>
+  </div>
   {% if diaries %}
   <div class="diary-list">
     {% for diary in diaries %}

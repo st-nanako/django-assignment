@@ -140,3 +140,9 @@ body {
   font-weight: 400;
   font-style: normal;
 }
+
+/* 検索結果 */
+.result{
+    width: 20%;
+    text-align: center;
+}
