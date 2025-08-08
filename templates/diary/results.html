@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block contents %}
-  <div class ="diary-item result">
+  <div class ="diary-item title_one">
     <div class="img_pin"><img src="{% static "img/gabyou_green.png" %}" alt=""></div>
     <h1>検索結果</h1>
   </div>
@@ -69,10 +69,10 @@
       </a>
     </div>
     {% endfor %}
-    <div class="diary-item add">
+    <div class="diary-item button">
       <a href="{% url 'index'%}">
       <div class="img_pin"><img src="{% static "img/gabyou_red.png" %}" alt=""></div>
-      <p class="add_p">戻る</p>
+      <p class="add_p">一覧へ戻る</p>
       <hr>
       <div class="add_img"><img src="{% static "img/return.png" %}" alt=""></div>
       </a>

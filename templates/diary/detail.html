@@ -6,38 +6,95 @@
 
 {% block contents %}
 
-<div class="add delete">
-  <h1>日記詳細</h1>
-  {% csrf_token %}
-  <table>
-      <tr>
-          <th>作成日時：</th>
-          <td>{{ form.created_at|date:"Y年m月d日 H:i" }}</td>
-      </tr>
-      <tr>
-          <th>更新日時：</th>
-          <td>{{ form.updated_at|date:"Y年m月d日 H:i" }}</td>
-      </tr>
-      <tr>
-          <th>天気：</th>
-          <td>{{form.weather}}</td>
-      </tr>
-      <tr>
-          <th>体調：</th>
-          <td>{{ form.get_condition_display }}</td>
-      </tr>
-      <tr>
-          <th>気分：</th>
-          <td>{{ form.get_feeling_display }}</td>
-      </tr>
-      <tr>
-          <th>詳細：</th>
-          <td>{{form.description}}</td>
-      </tr>
-  </table>
-  <a href="{% url 'edit' form.pk %}">編集</a>
-  <a href="{% url 'delete' form.pk %}">削除</a>
-
-  <a href="{% url 'index' %}">一覧へ戻る</a>
+<div class="diary-item title_one">
+    <div class="img_pin"><img src="{% static "img/gabyou_green.png" %}" alt=""></div>
+    <h1>日記詳細</h1>
 </div>
+{% csrf_token %}
+<div class="diary-item">
+    <div class="img_pin"><img src="{% static "img/gabyou_blue.png" %}" alt=""></div>
+    <table>
+        <tr>
+            <th>
+                <h2>
+                    作成日時：
+                </h2>
+            </th>
+            <td>{{ form.created_at|date:"Y年m月d日 H:i" }}</td>
+            <th>
+                <h2>
+                    更新日時：
+                </h2>
+            </th>
+            <td>{{ form.updated_at|date:"Y年m月d日 H:i" }}</td>
+        </tr>
+        <tr>
+        </tr>
+        <tr>
+            <th>
+                <h2>
+                    天気：
+                </h2>
+            </th>
+            <td>{{form.weather}}</td>
+        </tr>
+        <tr>
+            <th>
+                <h2>
+                    体調：
+                </h2>
+            </th>
+            <td>{{ form.get_condition_display }}</td>
+        </tr>
+        <tr>
+            <th>
+                <h2>
+                    気分：
+                </h2>
+            </th>
+            <td>{{ form.get_feeling_display }}</td>
+        </tr>
+        <tr>
+            <th>
+                <h2>
+                    詳細：
+                </h2>
+            </th>
+            <td>{{form.description}}</td>
+        </tr>
+    </table>
+</div>
+<div class="diary-list">
+
+    <div class="diary-item button">
+        <a href="{% url 'edit' form.pk %}">
+            <div class="img_pin"><img src="{% static "img/gabyou_red.png" %}" alt=""></div>
+            <p class="add_p">編集</p>
+            <hr>
+            <div class="add_img"><img src="{% static "img/edit.png" %}" alt=""></div>
+            
+        </a>
+    </div>
+    <div class="diary-item button">
+        <a href="{% url 'delete' form.pk %}">
+            <div class="img_pin"><img src="{% static "img/gabyou_red.png" %}" alt=""></div>
+            <p class="add_p">削除</p>
+            <hr>
+            <div class="add_img"><img src="{% static "img/delete.png" %}" alt=""></div>
+        </a>
+    </div>
+
+    <div class="diary-item button">
+        <a href="{% url 'index' %}">
+            <div class="img_pin"><img src="{% static "img/gabyou_red.png" %}" alt=""></div>
+            <p class="add_p">一覧へ戻る</p>
+            <hr>
+            <div class="add_img"><img src="{% static "img/return.png" %}" alt=""></div>
+        </a>
+    </div>
+</div>
+  {% comment %} <a href="{% url  %}"></a> {% endcomment %}
+  {% comment %} <a href="{% url 'delete' form.pk %}">削除</a> {% endcomment %}
+  {% comment %} <a href="{% url 'index' %}">一覧へ戻る</a> {% endcomment %}
+
 {% endblock %}

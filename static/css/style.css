@@ -33,15 +33,6 @@
     font-size: 20px;
     text-align: center;
 }
-/* 日記を追加のボックス調整 */
-.add{
-    width: 273px;
-}
-
-/* 日記を追加のボックスの中のaタグ調整 */
-.add a{
-    height: 140px;
-}
 
 /* 日記を追加のボックスの中のbtn調整 */
 
@@ -141,8 +132,51 @@ body {
   font-style: normal;
 }
 
-/* 検索結果 */
-.result{
-    width: 20%;
+/* タイトル(タイトル単体の時) */
+.title_one{
+    width: 30%;
     text-align: center;
+}
+
+.title_detail{
+    width: auto;
+    text-align: center;
+}
+
+/* 共通 */
+/* 画面遷移ボタン */
+.button{
+    width: 273px;
+}
+
+/* アニメーション */
+.animation{
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: 1.5s;
+}
+
+.keyframe3{
+  animation: swing linear 4s infinite;
+  transform: rotate(10deg);
+  animation-duration: 4s;
+}
+
+@keyframes swing {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(10deg);
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+    75% {
+        transform: rotate(-10deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
 }

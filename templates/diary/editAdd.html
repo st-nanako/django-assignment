@@ -5,8 +5,11 @@
 {% endblock %}
 
 {% block contents %}
+  <div class="diary-item title_one">
+    <div class="img_pin"><img src="{% static "img/gabyou_green.png" %}" alt=""></div>
+    <h1>日記{{ diary.id|yesno:'編集,追加' }}</h1>
+  </div>
 
-<h1>日記{{ diary.id|yesno:'編集,追加' }}</h1>
 <p>
   <form action= " {% if diary.id %}{% url 'edit' diary.id %}{% else %}{% url 'add' %}{% endif %} " method="post">
     {% csrf_token %}
