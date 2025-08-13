@@ -150,7 +150,7 @@ body {
 }
 
 /* アニメーション */
-.animation{
+/* .animation{
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
   animation-direction: alternate;
@@ -179,4 +179,72 @@ body {
     100% {
         transform: rotate(0deg);
     }
+} */
+
+/* 詳細画面 */
+.side{
+    display: flex;
+    justify-content: space-between;
+    /* margin-bottom: 2em; */
+}
+.side_center{
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+}
+.img_detail{
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+}
+
+.img_detail img{
+    width: 100%;
+    height: 100%;
+}
+
+.detail{
+    width: 50%;
+    margin:auto;
+    margin-top: 2em;
+}
+
+.detail p{
+    font-size: 20px;
+}
+
+.weather{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.button button{
+    display: block;
+    margin: auto;
+    width: 95%;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+}
+/* 編集追加画面 */
+
+.editadd{
+    width: 30%;
+    margin: 0 auto;
+    margin-top: 2em;
+}
+
+.side_editadd{
+    display: flex;
+    justify-content: space-between;
+}
+.side_editadd .feeling{
+    margin-left: 2em;
+}
+.data{
+    margin-bottom: 2em;
+}
+textarea[name="description"] {
+    width: 100%;
+    height: 10em;
 }

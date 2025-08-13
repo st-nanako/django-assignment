@@ -10,54 +10,89 @@
     <h1>日記{{ diary.id|yesno:'編集,追加' }}</h1>
   </div>
 
-<p>
-  <form action= " {% if diary.id %}{% url 'edit' diary.id %}{% else %}{% url 'add' %}{% endif %} " method="post">
+
+<form action= " {% if diary.id %}{% url 'edit' diary.id %}{% else %}{% url 'add' %}{% endif %} " method="post">
     {% csrf_token %}
-    {% comment %} 日付 {% endcomment %}
-    {{ diary.created_at|date:"Y年m月d日 H:i" }}
-    {% comment %} 体調 {% endcomment %}
-    <div>
-      体調
-      {{form.condition}}
-      {% if form.condition.errors %}
-        {% for error in form.condition.errors %}
-          <div class="field-error">{{ error }}</div>
-        {% endfor %}
+    <div class="diary-item editadd">
+      {% comment %} 日付 {% endcomment %}
+      {% if diary.id %}
+        <h2>作成日時</h2>
+        {{ diary.created_at|date:"Y年m月d日 H:i" }}
+        <h2>更新日時</h2>
+        {{ diary.updated_at|date:"Y年m月d日 H:i" }}
       {% endif %}
+      <div class="img_pin"><img src="{% static "img/gabyou_blue.png" %}" alt=""></div>
+      <div class="side_editadd">
+        {% comment %} 体調 {% endcomment %}
+        <div class="data">
+          <h2>体調</h2>
+          
+          {{form.condition}}
+          {% if form.condition.errors %}
+            {% for error in form.condition.errors %}
+              <div class="field-error">{{ error }}</div>
+            {% endfor %}
+          {% endif %}
+        </div>
+        {% comment %} 気分 {% endcomment %}
+        <div class="feeling">
+          <h2>気分</h2>
+          {{form.feeling}}
+          {% if form.feeling.errors %}
+            {% for error in form.feeling.errors %}
+              <div class="field-error">{{ error }}</div>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+      {% comment %} 天気 {% endcomment %}
+      <div class="data">
+        <h2>{{form.weather.label}}</h2>
+        {{form.weather}}
+        {% if form.weather.errors %}
+          {% for error in form.weather.errors %}
+            <div class="field-error">{{ error }}</div>
+          {% endfor %}
+        {% endif %}
+      </div>
+      {% comment %} 詳細 {% endcomment %}
+      <div class="data">
+        <h2>{{form.description.label}}</h2>
+        {{form.description}}
+        {% if form.description.errors %}
+          {% for error in form.description.errors %}
+            <div class="field-error">{{ error }}</div>
+          {% endfor %}
+        {% endif %}
+      </div>
     </div>
-    {% comment %} 気分 {% endcomment %}
-    <div>
-      気分
-      {{form.feeling}}
-      {% if form.feeling.errors %}
-        {% for error in form.feeling.errors %}
-          <div class="field-error">{{ error }}</div>
-        {% endfor %}
-      {% endif %}
+    {% comment %} <button type="submit">{{ diary.id|yesno:'更新,登録' }}</button>
+    <a href="{% if diary.id %}{% url 'detail' diary.id %}{% else %}{% url 'index' %}{% endif %}">戻る</a> {% endcomment %}
+  <div class="diary-list">
+
+    <div class="diary-item button">
+        <button type="submit" >  
+            <div class="img_pin"><img src="{% static "img/gabyou_red.png" %}" alt=""></div>
+            {{ diary.id|yesno:'更新,追加' }}
+            <hr>
+            <div class="add_img"><img src="{% static "img/edit_add.png" %}" alt=""></div>
+        </button>
     </div>
-    {% comment %} 天気 {% endcomment %}
-    <div>
-      {{form.weather.label}}
-      {{form.weather}}
-      {% if form.weather.errors %}
-        {% for error in form.weather.errors %}
-          <div class="field-error">{{ error }}</div>
-        {% endfor %}
-      {% endif %}
+    <div class="diary-item button">
+        <a href="{% if diary.id %}{% url 'detail' diary.id %}{% else %}{% url 'index' %}{% endif %}">
+          <div class="img_pin"><img src="{% static "img/gabyou_red.png" %}" alt=""></div>
+          {% if diary.id %}
+            <p class="add_p">詳細へ戻る</p>
+          {% else %}
+            <p class="add_p">一覧へ戻る</p>
+          {% endif %}
+
+          <hr>
+          <div class="add_img"><img src="{% static "img/return.png" %}" alt=""></div>
+        </a>
     </div>
-    {% comment %} 詳細 {% endcomment %}
-    <div>
-      {{form.description.label}}
-      {{form.description}}
-      {% if form.description.errors %}
-        {% for error in form.description.errors %}
-          <div class="field-error">{{ error }}</div>
-        {% endfor %}
-      {% endif %}
-    </div>
-    <button type="submit">{{ diary.id|yesno:'更新,登録' }}</button>
-    <a href="{% if diary.id %}{% url 'detail' diary.id %}{% else %}{% url 'index' %}{% endif %}">戻る</a>
-  </form> 
-</p>
+  </div>
+</form> 
+
 
 {% endblock %}

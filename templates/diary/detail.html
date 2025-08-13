@@ -11,58 +11,73 @@
     <h1>日記詳細</h1>
 </div>
 {% csrf_token %}
-<div class="diary-item">
+<div class="diary-item detail">
     <div class="img_pin"><img src="{% static "img/gabyou_blue.png" %}" alt=""></div>
-    <table>
-        <tr>
-            <th>
-                <h2>
-                    作成日時：
-                </h2>
-            </th>
-            <td>{{ form.created_at|date:"Y年m月d日 H:i" }}</td>
-            <th>
-                <h2>
-                    更新日時：
-                </h2>
-            </th>
-            <td>{{ form.updated_at|date:"Y年m月d日 H:i" }}</td>
-        </tr>
-        <tr>
-        </tr>
-        <tr>
-            <th>
-                <h2>
-                    天気：
-                </h2>
-            </th>
-            <td>{{form.weather}}</td>
-        </tr>
-        <tr>
-            <th>
-                <h2>
-                    体調：
-                </h2>
-            </th>
-            <td>{{ form.get_condition_display }}</td>
-        </tr>
-        <tr>
-            <th>
-                <h2>
-                    気分：
-                </h2>
-            </th>
-            <td>{{ form.get_feeling_display }}</td>
-        </tr>
-        <tr>
-            <th>
-                <h2>
-                    詳細：
-                </h2>
-            </th>
-            <td>{{form.description}}</td>
-        </tr>
-    </table>
+    <div class="side">
+        <div>
+
+            <h2>作成日時</h2>
+            <p>{{ form.created_at|date:"Y年m月d日 H:i" }}</p>
+        </div>
+        <div>
+            
+            <h2>更新日時</h2>
+            <p>{{ form.updated_at|date:"Y年m月d日 H:i" }}</p>
+
+        </div>
+    </div>
+    <hr>
+    <div class="weather">
+        <h2>天気</h2>
+        <p>{{form.weather}}</p>
+    </div>
+    <hr>
+    <div class="side_center">
+        <div>
+            <h2>体調</h2>
+            <p>{{ form.get_condition_display }}</p>
+            {% if form.condition == "good" %}
+                <div class="img_detail">
+                    <img src="{% static "img/sentiment_excited.png" %}" alt="">
+                </div>
+            {% elif form.condition == "normal" %}
+                <div class="img_detail">
+                    
+                    <img src="{% static "img/sentiment_neutral.png" %}" alt="">
+                </div>
+            {% elif form.condition == "bad" %}
+                <div class="img_detail">
+                    <img src="{% static "img/sentiment_stressed.png" %}" alt="">
+                </div>
+                
+            {% endif %}
+        </div>
+        <div>
+            <h2>気分</h2>
+            <p>{{ form.get_feeling_display }}</p>
+            {% if form.feeling == "good" %}
+                <div class="img_detail">
+                  <img src="{% static "img/sentiment_excited.png" %}" alt="">
+                </div>
+            {% elif form.feeling == "normal" %}
+                <div class="img_detail">
+                  <img src="{% static "img/sentiment_neutral.png" %}" alt="">
+                </div>
+            {% elif form.feeling == "bad" %}
+                <div class="img_detail">
+                  <img src="{% static "img/sentiment_stressed.png" %}" alt="">
+              </div>
+              
+            {% endif %}
+        </div>
+    </div>
+    <hr>
+    <div class="side">
+        <div>
+            <h2>詳細</h2>
+            <p>{{form.description}}</p>
+        </div>
+    </div>
 </div>
 <div class="diary-list">
 
