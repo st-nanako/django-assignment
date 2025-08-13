@@ -79,6 +79,17 @@
     </div>
   </div>
   {% else %}
-    <p>一致する日記はありません。</p>
+  <h2 class="search_result">一致する日記はありません。</h2>
+  <div class="diary-list">
+
+    <div class="diary-item button">
+      <a href="{% url 'index'%}">
+      <div class="img_pin"><img src="{% static "img/gabyou_red.png" %}" alt=""></div>
+      <p class="add_p">一覧へ戻る</p>
+      <hr>
+      <div class="add_img"><img src="{% static "img/return.png" %}" alt=""></div>
+      </a>
+    </div>
+  </div>
   {% endif %}
 {% endblock %}

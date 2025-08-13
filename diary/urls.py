@@ -9,5 +9,5 @@ urlpatterns = [
     path("editAdd/", diary.add,name="add"), # データ登録
     path("editAdd/<int:pk>/",diary.edit,name="edit"), #データ編集
     path('delete/<int:pk>/', diary.delete, name="delete"),  # データ削除ページ 
-    path('search/', search, name="search"),  # データ検索ページ 
+    path('search/', diary.search, name="search"),  # データ検索ページ 
 ]

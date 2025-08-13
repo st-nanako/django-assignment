@@ -11,7 +11,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin   # LoginRequiredMixin
 class IndexView(LoginRequiredMixin,View):
     def get(self, request): # GETリクエストが送信された時に呼び出される
         # diaryリストを取得
-        diary_list = Diary.objects.filter(author=self.request.user).order_by('created_at')
+        diary_list = Diary.objects.filter(author=self.request.user).order_by('created_at').reverse()
         form = SearchForm(request.GET or None)
         context = {"diary_list":diary_list,"form":form}
 
@@ -99,18 +99,20 @@ class DeleteView(LoginRequiredMixin,View):
 delete = DeleteView.as_view()
 
 # 検索
+class SearchView(LoginRequiredMixin,View):
+    def get(self,request):
+        form = SearchForm(request.GET or None)
+        diaries = Diary.objects.filter(author=self.request.user).order_by('created_at').reverse()
 
-def search(request):
-    form = SearchForm(request.GET or None)
-    diaries = Diary.objects.all()
+        if form.is_valid():
+            year = form.cleaned_data.get('year')
+            month = form.cleaned_data.get('month')
 
-    if form.is_valid():
-        year = form.cleaned_data.get('year')
-        month = form.cleaned_data.get('month')
+            if year:
+                diaries = diaries.filter(created_at__year=int(year))
+            if month:
+                diaries = diaries.filter(created_at__month=int(month))
 
-        if year:
-            diaries = diaries.filter(created_at__year=int(year))
-        if month:
-            diaries = diaries.filter(created_at__month=int(month))
+        return render(request, 'diary/results.html', {'form': form, 'diaries': diaries})
 
-    return render(request, 'diary/results.html', {'form': form, 'diaries': diaries})
+search = SearchView.as_view()

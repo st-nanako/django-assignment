@@ -8,6 +8,7 @@
         {% csrf_token %}
         {% bootstrap_form form %}
         {% bootstrap_button button_type="submit" content="サインアップ" size="md" %}
+        <a class="btn btn-primary" href="{% url 'index' %} " role="button">戻る</a>
     </form>
 </section>
 {% endblock %}
