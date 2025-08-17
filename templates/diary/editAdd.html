@@ -39,6 +39,16 @@
         {% endif %}
       </div>
       <div class="side_center">
+        {% comment %} 気分 {% endcomment %}
+        <div class="feeling">
+          <h2>気分</h2>
+          {{form.feeling}}
+          {% if form.feeling.errors %}
+            {% for error in form.feeling.errors %}
+              <div class="field-error">{{ error }}</div>
+            {% endfor %}
+          {% endif %}
+        </div>
         {% comment %} 体調 {% endcomment %}
         <div class="data">
           <h2>体調</h2>
@@ -46,16 +56,6 @@
           {{form.condition}}
           {% if form.condition.errors %}
             {% for error in form.condition.errors %}
-              <div class="field-error">{{ error }}</div>
-            {% endfor %}
-          {% endif %}
-        </div>
-        {% comment %} 気分 {% endcomment %}
-        <div class="feeling">
-          <h2>気分</h2>
-          {{form.feeling}}
-          {% if form.feeling.errors %}
-            {% for error in form.feeling.errors %}
               <div class="field-error">{{ error }}</div>
             {% endfor %}
           {% endif %}
