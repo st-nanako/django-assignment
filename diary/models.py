@@ -27,6 +27,3 @@ class Diary(models.Model):
     weather = models.CharField(verbose_name="天気", max_length=255)
     condition = models.CharField(max_length=10, choices=CONDITION_CHOICES)
     feeling = models.CharField(max_length=10, choices=MOOD_CHOICES)
-     
-    def __str__(self): # 管理画面でレコード毎に表示する文字列を指定
-        return f'{self.created_at.strftime('%Y-%m-%d %H:%M')}'
